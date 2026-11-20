@@ -102,8 +102,8 @@ class Game:
         hits = pygame.sprite.groupcollide(self.enemies, self.bullets, True, True)
         self.score += len(hits) * SCORE_PER_ENEMY
 
-        # TODO(F4): 적이 플레이어에 닿으면 그 적을 없애고 생명(self.lives)을 1 줄일 것.
-        #           힌트: pygame.sprite.spritecollide
+        crashed = pygame.sprite.spritecollide(self.player, self.enemies, True)
+        self.lives -= len(crashed)
 
         # 화면 아래로 지나간 적은 없앨 것.
         for enemy in list(self.enemies):
